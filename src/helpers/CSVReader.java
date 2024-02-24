@@ -22,8 +22,6 @@ public class CSVReader {
 
     public String[] readLine() throws IOException {
         String line = br.readLine();
-         System.out.println("here");
-        System.out.println(line);
         if (line == null) {
             return null;
         }

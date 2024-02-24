@@ -3,7 +3,7 @@ package initialQueue;
 import viewers_info.ViewingRequest;
 
 public class InitialQueue {
-	   private DoublyLinkedList viewersList;
+	    public DoublyLinkedList viewersList;
 
 	    /**
 	     * Creates a new priority queue with an empty list.
@@ -13,9 +13,8 @@ public class InitialQueue {
 	    }
 
 	    public void enqueue(ViewingRequest viewer) {
-	        Node current = viewersList.getLastNode();
 	        Node addAfterNode = ViewingPriority.estimateViewerPosition(viewer, viewersList);
-	        if (current != null) {
+	        if (addAfterNode != null) {
 	            viewersList.insert(viewer, addAfterNode);
 	        } else {
 	            viewersList.addFirst(viewer);

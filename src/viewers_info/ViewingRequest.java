@@ -7,22 +7,22 @@ public class ViewingRequest {
     private String name;
     private String address;
     private int income;
-    private Date moveInDate;
+    private Date viewingDate;
 
     public ViewingRequest(Date dateApplied, String name, String address, int income, Date moveInDate) {
         this.dateApplied = dateApplied;
         this.name = name;
         this.address = address;
         this.income = income;
-        this.moveInDate = moveInDate;
+        this.viewingDate = moveInDate;
     }
 
     public Date getDateApplied() {
         return dateApplied;
     }
 
-    public Date getMoveInDate() {
-        return moveInDate;
+    public Date getViewingDate() {
+        return viewingDate;
     }
 
     public int getIncome() {
@@ -31,6 +31,6 @@ public class ViewingRequest {
 
     @Override
     public String toString() {
-        return "Name: " + name + ", Date of Application: " + dateApplied;
+        return "Name: " + name + ", Date of Viewing: " + viewingDate;
     }
 }
