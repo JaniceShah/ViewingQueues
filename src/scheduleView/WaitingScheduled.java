@@ -16,6 +16,10 @@ public class WaitingScheduled extends Scheduler {
         this.viewingWaitlist = viewingWaitlist;
     }
 
+    public ViewingRequest getRequest() throws IOException, ParseException {
+        return getRequest();
+    }
+    
     public int schedule() throws IOException, ParseException {
         ViewingRequest viewer = reader.readViewingRequest();
         if(viewer==null)

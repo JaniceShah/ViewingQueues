@@ -7,14 +7,15 @@ public class ViewingRequest {
     private String name;
     private String address;
     private int income;
-    private Date viewingDate;
+    private Date moveInDate;
+    private Date assignedViewingDate;
 
     public ViewingRequest(Date dateApplied, String name, String address, int income, Date moveInDate) {
         this.dateApplied = dateApplied;
         this.name = name;
         this.address = address;
         this.income = income;
-        this.viewingDate = moveInDate;
+        this.moveInDate = moveInDate;
     }
 
     public Date getDateApplied() {
@@ -22,15 +23,23 @@ public class ViewingRequest {
     }
 
     public Date getViewingDate() {
-        return viewingDate;
+        return moveInDate;
     }
 
     public int getIncome() {
         return income;
     }
 
+    public Date getAssignedViewingDate() {
+        return assignedViewingDate;
+    }
+    
+    public void setAssignedViewingDate(Date assignedViewingDate) {
+        this.assignedViewingDate = assignedViewingDate;
+    }
+    
     @Override
     public String toString() {
-        return "Name: " + name + ", Date of Viewing: " + viewingDate;
+        return "Name: " + name + ", Date of Viewing: " + moveInDate;
     }
 }
