@@ -1,18 +1,19 @@
 package secondaryQueue;
 
 import viewers_info.ViewingRequest;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SecondaryQueue extends Queue{
 
 	
-	 int size;
-	 int currentQueueLength;
-	  Queue primaryQueue;
-	  Queue secondaryQueue;
+	int size;
+	int currentQueueLength;
+	Queue waitingListQueue;
+	Queue secondaryQueue;
+	private List<Queue> timeSlotQueues;
+    private static final int FIXED_TIME_SLOTS = 7;
+    private static final int MAX_QUEUE_SIZE = 3;
 
 	    
 	  //Constructs a FixedSizeQueue with the specified size.
@@ -20,45 +21,30 @@ public class SecondaryQueue extends Queue{
 	        super();
 	        this.size = size;
 	        this.currentQueueLength = 0;
-	        this.primaryQueue = new Queue();
-	        this.secondaryQueue = new Queue();
+	        this.waitingListQueue = new Queue();
+			this.timeSlotQueues = new ArrayList<>();
+			for (int i = 0; i < FIXED_TIME_SLOTS; i++) {
+				timeSlotQueues.add(new Queue());
+			}
 	    }
-	    
-	    
-	    public boolean addViewer(ViewingRequest viewer) {
-	        if (currentQueueLength >= size) {
-	            return false;
-	        }
 
-	        Node currNode = headNode;
-	        Node newNode = new Node(viewer);
-	        if (headNode == null) {
-	            insertAtStart(viewer);
-	        } else {
-	            while (currNode.nextNode != null) {
-	                currNode = currNode.nextNode;
-	            }
-	            currNode.nextNode = newNode;
-	            newNode.nextNode = null;
-	            Date newViewingEstimate = viewer.getAssignedViewingDate();
+		public boolean addViewer(ViewingRequest viewer) {
+            // Find the first non-empty queue among time slot queues
+            Queue firstNonEmptyQueue = null;
+            for (Queue queue : timeSlotQueues) {
+                if (queue.size() < MAX_QUEUE_SIZE) {
+                    firstNonEmptyQueue = queue;
+                    break;
+                }
+            }
 
-	            if (primaryQueue.getLastViewer() != null && primaryQueue.getLastViewer().getAssignedViewingDate().equals(viewer.getAssignedViewingDate())) {
-	                // Calculate the viewing time 2 hours later
-	                Instant instant = viewer.getAssignedViewingDate().toInstant();
-	                instant = instant.plus(Duration.ofHours(2));
-	                Date newViewingDate = Date.from(instant);
-	                viewer.setAssignedViewingDate(newViewingDate);
-	                secondaryQueue.addViewer(viewer);
-	            } else {
-	                // Add viewer to primary queue if it's not for the same date
-	                primaryQueue.addViewer(viewer);
-	            }
-	        }
-	        
-	        currentQueueLength++;
-	        return true;
-	    }
-	   
-	    
-	    
+            if (firstNonEmptyQueue != null && firstNonEmptyQueue.size() < MAX_QUEUE_SIZE) {
+                // Add the viewer to the first non-empty queue if it's not full
+                firstNonEmptyQueue.addViewer(viewer);
+            } else {
+                // Add the viewer to the primary queue if all time slot queues are full or empty
+                waitingListQueue.addViewer(viewer);
+            }
+        return true;
+    }	    
 }

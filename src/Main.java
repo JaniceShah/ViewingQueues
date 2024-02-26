@@ -3,7 +3,7 @@ import java.text.ParseException;
 import initialQueue.InitialQueue;
 import scheduleView.WaitingScheduled;
 import secondaryQueue.SecondaryQueue;
-import viewers_info.ViewingRequest;
+// import viewers_info.ViewingRequest;
 import viewers_info.ViewingRequestReader;
 
 public class Main {
