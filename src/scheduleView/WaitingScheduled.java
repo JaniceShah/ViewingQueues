@@ -2,7 +2,6 @@ package scheduleView;
 
 import java.io.IOException;
 import java.text.ParseException;
-
 import initialQueue.InitialQueue;
 import viewers_info.ViewingRequest;
 import viewers_info.ViewingRequestReader;
@@ -16,7 +15,7 @@ public class WaitingScheduled extends Scheduler {
         this.viewingWaitlist = viewingWaitlist;
     }
 
-    public ViewingRequest getRequest() throws IOException, ParseException {
+    public ViewingRequest getRequest(){
         return getRequest();
     }
     

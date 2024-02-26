@@ -1,8 +1,12 @@
 package initialQueue;
 
+import java.util.logging.Logger;
+
+import scheduleView.WaitingScheduled;
 import viewers_info.ViewingRequest;
 
 public class ViewingPriority {
+    static Logger logger = Logger.getLogger(ViewingPriority.class.getName());
 
    public static Node estimateViewerPosition(ViewingRequest viewer, DoublyLinkedList list) {
        Node current = list.getLastNode();
@@ -14,10 +18,9 @@ public class ViewingPriority {
        }
        Node checkPos = list.getFirstNode();
        while (checkPos != null) {
-            System.out.println(checkPos.viewer);
+            logger.info(" "+checkPos.viewer);
     	    checkPos = checkPos.next;
        }
-       System.out.println("Added a viewer");
 
        return current;
 
