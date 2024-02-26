@@ -1,7 +1,7 @@
 package initialQueue;
 
 import java.util.logging.Logger;
-
+import helpers.Constants;
 import viewers_info.ViewingRequest;
 
 public class InitialQueue {
@@ -9,8 +9,6 @@ public class InitialQueue {
 	public DoublyLinkedList viewersList;
 
 	static Logger logger = Logger.getLogger(ViewingPriority.class.getName());
-
-	int minimumIncome = 35000;
 
 	/**
 	 * Creates a new priority queue with an empty list.
@@ -20,7 +18,7 @@ public class InitialQueue {
 	}
 
 	public void enqueue(ViewingRequest viewer) {
-		if (viewer.getIncome() < minimumIncome) {
+		if (viewer.getIncome() < Constants.minimumIncome) {
 			System.out.println("The users income is lesser than the minimum income accepted");
 			return;
 		}

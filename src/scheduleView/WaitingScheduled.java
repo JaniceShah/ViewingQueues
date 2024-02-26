@@ -6,7 +6,7 @@ import initialQueue.InitialQueue;
 import viewers_info.ViewingRequest;
 import viewers_info.ViewingRequestReader;
 
-public class WaitingScheduled extends Scheduler {
+public class WaitingScheduled {
     private ViewingRequestReader reader;
     private InitialQueue viewingWaitlist;
 

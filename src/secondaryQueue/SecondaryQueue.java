@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import helpers.Constants;
 import initialQueue.ViewingPriority;
 
 public class SecondaryQueue extends Queue{
@@ -13,8 +14,6 @@ public class SecondaryQueue extends Queue{
 	int currentQueueLength;
 	Queue waitingListQueue;
 	private List<Queue> timeSlotQueues;
-    private static final int FIXED_TIME_SLOTS = 7;
-    private static final int MAX_QUEUE_SIZE = 3;
 	static Logger logger = Logger.getLogger(ViewingPriority.class.getName());
 
 	    
@@ -24,7 +23,7 @@ public class SecondaryQueue extends Queue{
 	        this.currentQueueLength = 0;
 	        this.waitingListQueue = new Queue();
 			this.timeSlotQueues = new ArrayList<>();
-			for (int i = 0; i < FIXED_TIME_SLOTS; i++) {
+			for (int i = 0; i < Constants.FIXED_TIME_SLOTS; i++) {
 				timeSlotQueues.add(new Queue());
 			}
 	    }
@@ -33,13 +32,13 @@ public class SecondaryQueue extends Queue{
             // Find the first non-empty queue among time slot queues
             Queue firstNonEmptyQueue = null;
             for (Queue queue : timeSlotQueues) {
-                if (queue.size() < MAX_QUEUE_SIZE) {
+                if (queue.size() < Constants.MAX_QUEUE_SIZE) {
                     firstNonEmptyQueue = queue;
                     break;
                 }
             }
 
-            if (firstNonEmptyQueue != null && firstNonEmptyQueue.size() < MAX_QUEUE_SIZE) {
+            if (firstNonEmptyQueue != null && firstNonEmptyQueue.size() < Constants.MAX_QUEUE_SIZE) {
                 // Add the viewer to the first non-empty queue if it's not full
                 firstNonEmptyQueue.addViewer(viewer);
             } else {

@@ -1,7 +1,5 @@
 package initialQueue;
 
-import java.util.logging.Logger;
-
 import viewers_info.ViewingRequest;
 
 public class ViewingPriority {
