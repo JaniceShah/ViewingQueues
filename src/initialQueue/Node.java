@@ -19,4 +19,8 @@ class Node {
         this.next = next;
         this.previous = previous;
     }
+    
+    public String toString() {
+    	return " Viewing details"+ viewer;
+    }
 }

@@ -23,4 +23,8 @@ class Node {
     public ViewingRequest getViewingRequest() {
         return viewer;
     }
+    
+    public String toString() {
+    	return " Viewing details"+ viewer;
+    }
 }

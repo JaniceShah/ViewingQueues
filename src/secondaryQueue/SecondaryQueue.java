@@ -50,9 +50,10 @@ public class SecondaryQueue extends Queue{
 		
 		public void printViewings() {
 			System.out.println("Printing Assigned Viewers");
-			timeSlotQueues.stream().forEach((x)->{
-				printingQueues(x);
-			});
+			for(int i=0;i<timeSlotQueues.size();i++) {
+				System.out.println(" Time Slot No: "+i);
+				printingQueues(timeSlotQueues.get(i));
+			}
 		}
 		public void printWaitList() {
 			System.out.println("Printing Waiting List");

@@ -19,7 +19,7 @@ public class InitialQueue {
 
 	public void enqueue(ViewingRequest viewer) {
 		if (viewer.getIncome() < Constants.minimumIncome) {
-			System.out.println("The users income is lesser than the minimum income accepted");
+			System.out.println("The users income is lesser than the minimum income accepted " + viewer.getName());
 			return;
 		}
 

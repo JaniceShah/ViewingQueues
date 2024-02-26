@@ -22,7 +22,15 @@ public class ViewingRequest {
         return dateApplied;
     }
 
-    public Date getViewingDate() {
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getViewingDate() {
         return moveInDate;
     }
 
