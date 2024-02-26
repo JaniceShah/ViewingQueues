@@ -51,7 +51,7 @@ public class SecondaryQueue extends Queue{
 		public void printViewings() {
 			System.out.println("Printing Assigned Viewers");
 			for(int i=0;i<timeSlotQueues.size();i++) {
-				System.out.println(" Time Slot No: "+i);
+				System.out.println(" Time Slot No: "+(i+1));
 				printingQueues(timeSlotQueues.get(i));
 			}
 		}
