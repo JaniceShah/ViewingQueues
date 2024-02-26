@@ -3,23 +3,24 @@ package secondaryQueue;
 import viewers_info.ViewingRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import initialQueue.ViewingPriority;
 
 public class SecondaryQueue extends Queue{
 
 	
-	int size;
 	int currentQueueLength;
 	Queue waitingListQueue;
-	Queue secondaryQueue;
 	private List<Queue> timeSlotQueues;
     private static final int FIXED_TIME_SLOTS = 7;
     private static final int MAX_QUEUE_SIZE = 3;
+	static Logger logger = Logger.getLogger(ViewingPriority.class.getName());
 
 	    
 	  //Constructs a FixedSizeQueue with the specified size.
-	    public SecondaryQueue(int size) {
+	    public SecondaryQueue() {
 	        super();
-	        this.size = size;
 	        this.currentQueueLength = 0;
 	        this.waitingListQueue = new Queue();
 			this.timeSlotQueues = new ArrayList<>();
@@ -46,5 +47,24 @@ public class SecondaryQueue extends Queue{
                 waitingListQueue.addViewer(viewer);
             }
         return true;
-    }	    
+		}	    
+		
+		public void printViewings() {
+			System.out.println("Printing Assigned Viewers");
+			timeSlotQueues.stream().forEach((x)->{
+				printingQueues(x);
+			});
+		}
+		public void printWaitList() {
+			System.out.println("Printing Waiting List");
+			printingQueues(waitingListQueue);
+		}
+		
+		public void printingQueues(Queue viewer) {
+			Node viewers = viewer.headNode;
+			while (viewers != null) {
+				logger.info(" " + viewers.viewer);
+				viewers = viewers.nextNode;
+			}
+		}
 }

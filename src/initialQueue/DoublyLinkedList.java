@@ -1,5 +1,7 @@
 package initialQueue;
 
+import java.util.NoSuchElementException;
+
 import viewers_info.ViewingRequest;
 
 class DoublyLinkedList {
@@ -40,19 +42,21 @@ class DoublyLinkedList {
         size++;
     }
     
-    
-    
-    public ViewingRequest pop() {
-        if (size == 0) {
-            throw new IllegalStateException("Priority queue is empty");
-        }
-        Node nodeToRemove = first;
-        first = nodeToRemove.next;
-        first.previous = null;
-        size--;
-        return (ViewingRequest) nodeToRemove.viewer;
-    }
-    
+	    public ViewingRequest pop() {
+		  if (first == null) {
+	          throw new NoSuchElementException();
+	      }
+	      ViewingRequest viewer = first.viewer;
+	      first = first.next;
+	      if (first != null) {
+	          first.previous = null;
+	      } else {
+	          last = null;
+	      }
+	      size--;
+	      return viewer;
+	  }
+
     public Node getFirstNode() {
         return first;
     }
